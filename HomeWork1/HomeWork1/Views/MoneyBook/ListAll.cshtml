@@ -1,0 +1,44 @@
+﻿@model IEnumerable<HomeWork1.Models.MoneyBookViewModels>
+@{
+    Layout = null;
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.No)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FeeType)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.BookDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fee)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.No)
+            </td>
+            <td>
+
+                @Html.DisplayFor(modelItem => item.FeeType)
+
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.BookDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fee)
+            </td>
+        </tr>
+    }
+
+</table>

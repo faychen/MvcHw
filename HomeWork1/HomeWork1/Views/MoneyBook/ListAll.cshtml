@@ -2,43 +2,49 @@
 @{
     Layout = null;
 }
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Category)
+                </th>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.No)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FeeType)
-        </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Money)
+                </th>
+            </tr>
+            @{
+                var index = 1;
+            }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @index
+                    </td>
+                    <td>
 
-        <th>
-            @Html.DisplayNameFor(model => model.BookDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fee)
-        </th>
-    </tr>
+                        @Html.DisplayFor(modelItem => item.Category)
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.No)
-            </td>
-            <td>
+                    </td>
 
-                @Html.DisplayFor(modelItem => item.FeeType)
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Money)
+                    </td>
+                </tr>
+                index++;
+            }
 
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.BookDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fee)
-            </td>
-        </tr>
-    }
-
-</table>
+        </table>
+        </div>
+    </div>

@@ -22,10 +22,9 @@ namespace HomeWork1.Controllers
             {
                 var item = new MoneyBookViewModels
                 {
-                    No = i,
-                    BookDate = DateTime.Now.AddDays(-i),
-                    FeeType=(i%2==1 ? FeeTypes.支出 : FeeTypes.收入),
-                    Fee=i*100
+                    Date = DateTime.Now.AddDays(-i),
+                    Category=(i%2==1 ? CategoryEnum.支出 : CategoryEnum.收入),
+                    Money=i*100
                 };
                 fakeData.Add(item);
             }

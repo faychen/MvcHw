@@ -3,11 +3,19 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using HomeWork1.Models;
+using HomeWork1.Service;
+using HomeWork1.Helper;
 
 namespace HomeWork1.Controllers
 {
     public class MoneyBookController : Controller
     {
+        private readonly AccountBookService _accountBookService;
+
+        public MoneyBookController()
+        {
+            _accountBookService = new AccountBookService();
+        }
         // GET: MoneyBook
         public ActionResult Index()
         {
@@ -17,19 +25,30 @@ namespace HomeWork1.Controllers
         [ChildActionOnly]
         public ActionResult ListAll()
         {
-            var fakeData = new List<MoneyBookViewModels>();
-            for (int i = 1; i < 51; i++)
-            {
-                var item = new MoneyBookViewModels
-                {
-                    Date = DateTime.Now.AddDays(-i),
-                    Category=(i%2==1 ? CategoryEnum.支出 : CategoryEnum.收入),
-                    Money=i*100
-                };
-                fakeData.Add(item);
-            }
-            return View(fakeData);
+            return View(_accountBookService.LookupMoney());
         }
+
+        [HttpPost]
+        public ActionResult Create(MoneyBookViewModels moneyBook)
+        {
+            if (ModelState.IsValid)
+            {
+                //驗證日期不能=今
+                if (moneyBook.Date.CompareTo(DateTime.Now) >0)
+                {
+                    ModelState.AddModelError("Date", "日期不得大於今天");
+                    return View("Index");
+                }
+
+                _accountBookService.Add(ModelHelper.ConvertToAccountBookModel(moneyBook));
+                _accountBookService.Save();
+                return RedirectToAction("Index");
+            }
+
+            return View("Index");
+        }
+
+
 
 
     }

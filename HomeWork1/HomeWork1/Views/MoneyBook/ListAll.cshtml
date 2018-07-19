@@ -1,4 +1,5 @@
-﻿@model IEnumerable<HomeWork1.Models.MoneyBookViewModels>
+﻿@using HomeWork1.Helper;
+@model IEnumerable<HomeWork1.Models.MoneyBookViewModels>
 @{
     Layout = null;
 }
@@ -30,9 +31,7 @@
                         @index
                     </td>
                     <td>
-
-                        @Html.DisplayFor(modelItem => item.Category)
-
+                        @Html.DisplayCatrgoryColor(item.Category)
                     </td>
 
                     <td>

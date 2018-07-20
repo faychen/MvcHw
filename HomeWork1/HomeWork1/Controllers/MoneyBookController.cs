@@ -5,16 +5,18 @@ using System.Web.Mvc;
 using HomeWork1.Models;
 using HomeWork1.Service;
 using HomeWork1.Helper;
+using HomeWork1.Repository;
 
 namespace HomeWork1.Controllers
 {
     public class MoneyBookController : Controller
     {
         private readonly AccountBookService _accountBookService;
-
+        private readonly UnitOfWork _unitOfWork;
         public MoneyBookController()
         {
-            _accountBookService = new AccountBookService();
+            _unitOfWork = new UnitOfWork();
+            _accountBookService = new AccountBookService(_unitOfWork);
         }
         // GET: MoneyBook
         public ActionResult Index()
@@ -41,7 +43,8 @@ namespace HomeWork1.Controllers
                 }
 
                 _accountBookService.Add(ModelHelper.ConvertToAccountBookModel(moneyBook));
-                _accountBookService.Save();
+                //_accountBookService.Save();
+                _unitOfWork.Commit();
                 return RedirectToAction("Index");
             }
 

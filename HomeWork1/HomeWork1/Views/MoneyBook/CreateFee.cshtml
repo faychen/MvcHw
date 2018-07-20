@@ -28,7 +28,7 @@
     <div class="form-group">
         <label for="description" class="col-sm-2 control-label">備註</label>
         <div class="col-sm-10">
-            @Html.TextAreaFor(model => model.Description, 5, 100, new { htmlAttributes = new { @class = "form-control"} })
+            @Html.TextAreaFor(model => model.Description, 5, 140, new { htmlAttributes = new { @class = "form-control"} })
             <br>
             @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
         </div>

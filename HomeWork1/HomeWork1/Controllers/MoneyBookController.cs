@@ -31,6 +31,7 @@ namespace HomeWork1.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(MoneyBookViewModels moneyBook)
         {
             if (ModelState.IsValid)

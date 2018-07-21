@@ -22,7 +22,7 @@ namespace HomeWork1.Service
 
         public IEnumerable<MoneyBookViewModels> LookupMoney()
         {
-            var source = _accountBookRepository.LookupAll().OrderByDescending(d => d.Dateee);
+            var source = _accountBookRepository.LookupAll();
             var result = new List<MoneyBookViewModels>();
 
             foreach (var item in source)
@@ -35,7 +35,7 @@ namespace HomeWork1.Service
                 };
                 result.Add(moneyItem);
             }
-            return result;
+            return result.OrderByDescending(d => d.Date);
         }
 
 

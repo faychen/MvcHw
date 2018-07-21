@@ -2,6 +2,7 @@
 @model IEnumerable<HomeWork1.Models.MoneyBookViewModels>
 @{
     Layout = null;
+    var index = 1;
 }
 <div class="row">
     <div class="col-md-12">
@@ -21,14 +22,12 @@
                     @Html.DisplayNameFor(model => model.Money)
                 </th>
             </tr>
-            @{
-                var index = 1;
-            }
+           
             @foreach (var item in Model)
             {
                 <tr>
                     <td>
-                        @index
+                        @(++index)
                     </td>
                     <td>
                         @Html.DisplayCatrgoryColor(item.Category)
@@ -41,7 +40,6 @@
                         @Html.DisplayFor(modelItem => item.Money)
                     </td>
                 </tr>
-                index++;
             }
 
         </table>
